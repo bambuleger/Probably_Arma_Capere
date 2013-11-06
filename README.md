@@ -15,9 +15,9 @@ Recommendet Talents / Glyphs:
 
 Single Target:
 * Inside Colossus Smash:
-* * MS > OP > HS > Slam
+  * MS > OP > HS > Slam
 * Outside Colossus Smash:
-* * MS > OP > Slam
+  * MS > OP > Slam
 * Align Storm Bolt with CS for max benefit
 
 

@@ -1,4 +1,4 @@
-ProbablyEngine.rotation.register_custom(71, "Arma Capere", {
+ProbablyEngine.rotation.register_custom(71, "|cFFC79C6EArma Capere|r", {
 
   -- =======================================
   --      Arma Capere - Arms Warrior PvE
@@ -9,120 +9,133 @@ ProbablyEngine.rotation.register_custom(71, "Arma Capere", {
   -- https://probablyengine.com/forum/viewtopic.php?id=153
   -- =======================================
 
--- Hotkeys
-	--{ "pause", "modifier.lshift"}, NOT IMPLEMENTED IN PE
-	{ "Heroic Leap", "modifier.lcontrol", "ground" },
-	{ "Skull Banner", "modifier.lalt", "ground"},
-	{ "Demoralizing Banner", "modifier.rcontrol", "ground"},
-	
--- Buffs
-	{ "Berserker Rage" },
-	{ "Blood Fury" },
-
--- Shouts
---	{ "Battle Shout", {
---  		"!player.buff(Battle Shout)",
---  		"!player.buff(Horn of Winter)",
---  		"!player.buff(Trueshot Aura)",
---	}},
---
---	{ "Commanding Shout", {
---  		"!player.buff(Commanding Shout)",
---  		"!player.buff(Dark Intent)",
---  		"!player.buff(Power Word: Fortitude)",
---  		"!player.buff(Qiraji Fortitude)",
---	}},
-
--- Interrupts
-	{ "Pummel", "modifier.interrupts" },
-	{ "Disrupting Shout", "modifier.interrupts" },
-
--- Defensives
-	{ "Rallying Cry", {
-    	"player.health < 25",
-	}},
-
-	{ "Shield Wall", {
-    	"player.health < 15"
-  	}},
-
-  	{ "Die by the Sword", {
-    	"player.health < 40",
-  	}},
-
-  	{ "Impending Victory" },
-  	{ "Victory Rush" },
-
+-----------------------------------------------------------------------------------------------------------------------------
+-- Hotkeys ------------------------------------------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------------------------------------------------------
+	{ "pause", "modifier.lshift"}, 
+	{ "6544", "modifier.lcontrol", "ground" }, -- Heroic Leap
+-----------------------------------------------------------------------------------------------------------------------------
+-- Queued Spells ------------------------------------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------------------------------------------------------
+	{ "!114207", "@armaCap.checkQueue(114207)" }, -- Skull Banner
+	{ "!871", "@armaCap.checkQueue(871)" }, -- Shield Wall
+	{ "!118038", "@armaCap.checkQueue(118038)" }, -- Die by the Sword
+	{ "!114203", "@armaCap.checkQueue(114203)", "ground" }, -- Demo Banner
+	{ "!97462", "@armaCap.checkQueue(97462)" }, -- Rallying Cry
+	{ "!46924", "@armaCap.checkQueue(46924)" }, -- Bladestorm
+	{ "!46968", "@armaCap.checkQueue(46968)" }, -- Shockwave
+	{ "!118000", "@armaCap.checkQueue(118000)" }, -- Dragon Roar
+	{ "!114028", "@armaCap.checkQueue(114028)" }, -- Mass Spell Reflection
+	{ "!114029", "@armaCap.checkQueue(114029)", "focus" }, -- Safeguard on focus
+	{ "!114030", "@armaCap.checkQueue(114030)", "focus" }, -- Vigilance on focus
+-----------------------------------------------------------------------------------------------------------------------------
+-- Buffs -------------------------------------------------------------------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------
+	{ "18499" }, -- Berserker Rage
+	{ "20572" }, -- Blood Fury
+-----------------------------------------------------------------------------------------------------------------------------
+-- Interrupts / Disarm ------------------------------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------------------------------------------------------
+	{ "6552", "modifier.interrupts" }, -- Pummel
+	{ "102060", "modifier.interrupts" }, -- Disrupting Shout
+	{ "676", "modifier.interrupts"}, -- Disarm
+-----------------------------------------------------------------------------------------------------------------------------
+-- Defensive Cooldowns ------------------------------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------------------------------------------------------
+  	{ "103840" }, -- Impending Victory
+  	{ "34428" }, -- Victory Rush
+  	{ "871", {"player.health < 25", "toggle.def"}}, -- Shield Wall
+  	{ "118038", {"player.health < 35", "toggle.def"}}, -- Die by the Sword
+  	{ "97462", {"player.health < 35", "toggle.def"}}, -- Rallying Cry
+  	{ "!/run UseItemByName(5512)", "@armaCap.Healthstone"}, --Healthstone
+-- Stance Dance-------------------------------------------------------------------------------------------------------------- 
 	{ "71", {
-		"player.health <= 15",
+		"player.health <= 25",
         "player.seal != 2"
     }},
 	{ "2457", {
-		"player.health >= 16",
+		"player.health >= 26",
         "player.seal != 1"
     }},
-
--- Cooldowns
-	{ "Avatar", "modifier.cooldowns"},
-	{ "Recklessness", "modifier.cooldowns"},
-	--{ "Skull Banner", "modifier.cooldowns"},
-
--- AoE
+-----------------------------------------------------------------------------------------------------------------------------
+-- Offensive Cooldowns ------------------------------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------------------------------------------------------
+	{ "107574", "modifier.cooldowns"}, -- Avatar
+	{ "1719", "modifier.cooldowns"}, -- Recklessness
+	{ "114207", {"modifier.cooldowns", "toggle.autobanner"}}, -- Skull Banner
+-----------------------------------------------------------------------------------------------------------------------------
+-- Main Rotation ------------------------------------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------------------------------------------------------
+-- Multitarget -------------------------------------------------------------------------------------------------------------- 
 	{{ 
-		{ "Thunder Clap", "target.debuff(Deep Wounds).duration < 3" },
-		{ "Sweeping Strikes" },
-		{ "Bloodbath" },
-		{ "Bladestorm", "player.buff(Sweeping Strikes).duration > 5" },
-		{ "Dragon Roar" },
-		{ "Colossus Smash", "target.debuff(Colossus Smash).duration <= 2" },
-		{ "Slam", "player.rage > 70" },
-		{ "Mortal Strike", "player.rage < 40" },
-		{ "Overpower", "player.buff(Taste for Blood).count >= 1" },
-		{ "Battle Shout" },
-		{ "Whirlwind" },
-		{ "Heroic Throw" },		
+		{ "6343", "target.range <= 6" }, -- Thunder Clap
+		{ "12328" }, -- Sweeping Strikes
+		{ "12292", "target.range <= 6" }, -- Bloodbath
+		{ "46924", "player.buff(12292).duration > 5" }, -- Bladestorm
+		{ "118000",  }, -- Dragon Roar
+		{ "86346", "target.debuff(86346).duration <= 2" }, -- Colossus Smash
+		{ "12294", "player.rage < 40" }, -- Mortal Strike
+		{ "1464", "player.rage > 70" }, -- Slam
+		{ "7384", "player.buff(56636).count >= 1" }, -- Overpower
+		{ "6673" }, -- Battle Shout
+		{ "57755" }, -- Heroic Throw"
 	}, "modifier.multitarget"},
-
--- Single Target
-	{ "Colossus Smash", "target.debuff(Colossus Smash).duration <= 2" },
-	
-	-- Inside CS
+-- Singletarget ------------------------------------------------------------------------------------------------------------- 
+	{ "86346", "target.debuff(86346).duration <= 2" }, -- Colossus Smash	
+-- Inside CS ---------------------------------------------------------------------------------------------------------------- 
 	{{
-		{ "Storm Bolt" },
-		{ "Bloodbath" },
-		{ "Mortal Strike" },
-		{ "Overpower", "player.buff(Taste for Blood).count >= 1" },
-		{ "Heroic Strike", "player.rage >= 60" },
-		{ "Slam" },
-	}, {"target.debuff(Colossus Smash)", "target.health > 20" }},
-
-	-- Execute Inside CS
+		{ "78", "player.rage >= 90" }, -- Heroic Strike
+		{ "107570" }, -- Storm Bolt
+		{ "12292", "target.range <= 6" }, -- Bloodbath
+		{ "12294" }, -- Mortal Strike
+		{ "5308" }, -- Execute
+		{ "1464", "player.rage >= 40" }, -- Slam
+		{ "7384", "player.buff(56636).count >= 3" }, -- Overpower
+	}, {"target.debuff(86346)", "target.health > 20" }},
+-- Execute inside CS -------------------------------------------------------------------------------------------------------- 
 	{{
-		{ "Shattering Throw", "!player.moving" },
-		{ "Storm Bolt" },
-		{ "Bloodbath" },
-		{ "Mortal Strike" },
-		{ "Execute" },
-		{ "Overpower", "player.buff(Taste for Blood).count >= 1" },
-	}, {"target.debuff(Colossus Smash)", "target.health <= 20" }},
-	
-	-- Outside CS
+		{ "107570" }, -- Storm Bold
+		{ "12292", "target.range <= 6" }, -- Bloodbath
+		{ "12294" }, -- Mortal Strike
+		{ "5308" }, -- Execute
+		{ "7384", "player.buff(56636).count >= 1" }, -- Overpower
+	}, {"target.debuff(86346)", "target.health <= 20" }},	
+-- Outside CS ---------------------------------------------------------------------------------------------------------------
 	{{
-		{ "Mortal Strike" },
-		{ "Overpower", "player.buff(Taste for Blood).count >= 1" },
-		{ "Battle Shout" },
-		{ "Heroic Throw" },
-		{ "Slam" },
-	}, {"!target.debuff(Colossus Smash)", "target.health > 20" }},
-
-	-- Execute Outside CS
+		{ "78", "player.rage >= 110" }, -- Heroic Strike
+		{ "12294" }, -- Mortal Strike
+		{ "5308" }, -- Execute	
+		{ "7384", "player.buff(56636).count >= 3" }, -- Overpower
+		{ "Slam", "player.rage >= 80" }, -- Slam
+		{ "6673" }, -- Battle Shout
+		{ "57755" }, -- Heroic Throw
+	}, {"!target.debuff(86346)", "target.health > 20" }},
+-- Execute outside CS -------------------------------------------------------------------------------------------------------
 	{{
-		{ "Mortal Strike" },
-		{ "Execute", "player.rage > 80" },
-		{ "Overpower", "player.buff(Taste for Blood).count >= 1" },
-		{ "Battle Shout" },
-		{ "Heroic Throw" },
-		{ "Heroic Strike" },		
-	}, {"!target.debuff(Colossus Smash)", "target.health <= 20" }},
-
-})
+		{ "12294" }, -- Mortal Strike
+		{ "5308" }, -- Execute
+		{ "7384", "player.buff(56636).count >= 1" }, -- Overpower
+		{ "6673" }, -- Battle Shout
+		{ "57755" }, -- Heroic Throw
+	}, {"!target.debuff(86346)", "target.health <= 20" }},
+-----------------------------------------------------------------------------------------------------------------------------
+-- OOC Hotkeys -------------------------------------------------------------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------
+},	{
+	{ "6544", "modifier.lcontrol", "ground" }, -- Heroic Leap
+	},
+-----------------------------------------------------------------------------------------------------------------------------
+-- Custom Toggle ------------------------------------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------------------------------------------------------
+function()
+ProbablyEngine.toggle.create(
+    'def',
+    'Interface\\Icons\\ability_warrior_shieldwall.png‎',
+    'Defensive CDs Toggle',
+	'Enable or Disable usage of Defensive Cooldowns')
+ProbablyEngine.toggle.create(
+    'autobanner',
+    'Interface\\Icons\\warrior_skullbanner.png‎',
+    'Auto Skull Banner',
+	'Enable or Disable Auto Skull Banner\nUse /arma qSkullb if disabled')
+end)

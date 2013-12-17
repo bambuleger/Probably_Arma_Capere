@@ -1,8 +1,9 @@
 ## Interface: 50400
-## Title: Probably - Arma Capere
+## Title: Probably - |CFFC79C6EArma Capere
 ## Notes: ProbablyEngine Custom Arms Warrior
 ## Dependencies: Probably
 ## Author: chumii
 ## Version: 1.0
 
+functions.lua
 rotation.lua

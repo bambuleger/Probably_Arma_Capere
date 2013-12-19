@@ -76,7 +76,7 @@ ProbablyEngine.rotation.register_custom(71, "|cFFC79C6EArma Capere|r", {
 		{ "86346", "target.debuff(86346).duration <= 2" }, -- Colossus Smash
 		{ "12294", "player.rage < 40" }, -- Mortal Strike
 		{ "1464", "player.rage > 70" }, -- Slam
-		{ "7384", "player.buff(56636).count >= 1" }, -- Overpower
+		{ "7384", "player.buff(60503).count >= 1" }, -- Overpower
 		{ "6673" }, -- Battle Shout
 		{ "57755" }, -- Heroic Throw"
 	}, "modifier.multitarget"},
@@ -90,7 +90,7 @@ ProbablyEngine.rotation.register_custom(71, "|cFFC79C6EArma Capere|r", {
 		{ "12294" }, -- Mortal Strike
 		{ "5308" }, -- Execute
 		{ "1464", "player.rage >= 40" }, -- Slam
-		{ "7384", "player.buff(56636).count >= 3" }, -- Overpower
+		{ "7384", "player.buff(60503).count >= 3" }, -- Overpower
 	}, {"target.debuff(86346)", "target.health > 20" }},
 -- Execute inside CS -------------------------------------------------------------------------------------------------------- 
 	{{
@@ -98,14 +98,14 @@ ProbablyEngine.rotation.register_custom(71, "|cFFC79C6EArma Capere|r", {
 		{ "12292", "target.range <= 6" }, -- Bloodbath
 		{ "12294" }, -- Mortal Strike
 		{ "5308" }, -- Execute
-		{ "7384", "player.buff(56636).count >= 1" }, -- Overpower
+		{ "7384", "player.buff(60503).count >= 1" }, -- Overpower
 	}, {"target.debuff(86346)", "target.health <= 20" }},	
 -- Outside CS ---------------------------------------------------------------------------------------------------------------
 	{{
 		{ "78", "player.rage >= 110" }, -- Heroic Strike
 		{ "12294" }, -- Mortal Strike
 		{ "5308" }, -- Execute	
-		{ "7384", "player.buff(56636).count >= 3" }, -- Overpower
+		{ "7384", "player.buff(60503).count >= 3" }, -- Overpower
 		{ "Slam", "player.rage >= 80" }, -- Slam
 		{ "6673" }, -- Battle Shout
 		{ "57755" }, -- Heroic Throw
@@ -114,7 +114,7 @@ ProbablyEngine.rotation.register_custom(71, "|cFFC79C6EArma Capere|r", {
 	{{
 		{ "12294" }, -- Mortal Strike
 		{ "5308" }, -- Execute
-		{ "7384", "player.buff(56636).count >= 1" }, -- Overpower
+		{ "7384", "player.buff(60503).count >= 1" }, -- Overpower
 		{ "6673" }, -- Battle Shout
 		{ "57755" }, -- Heroic Throw
 	}, {"!target.debuff(86346)", "target.health <= 20" }},

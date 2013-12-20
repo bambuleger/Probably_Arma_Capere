@@ -106,7 +106,7 @@ ProbablyEngine.rotation.register_custom(71, "|cFFC79C6EArma Capere|r", {
 		{ "12294" }, -- Mortal Strike
 		{ "5308" }, -- Execute	
 		{ "7384", "player.buff(60503).count >= 3" }, -- Overpower
-		{ "Slam", "player.rage >= 80" }, -- Slam
+		{ "1464", "player.rage >= 80" }, -- Slam
 		{ "6673" }, -- Battle Shout
 		{ "57755" }, -- Heroic Throw
 	}, {"!target.debuff(86346)", "target.health > 20" }},
